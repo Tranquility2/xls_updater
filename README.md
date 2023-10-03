@@ -1,5 +1,5 @@
 # xls_updater
-Convert legacy xls to newer xlsx format
+Convert legacy xls data to newer xlsx format
 
 ---
 
