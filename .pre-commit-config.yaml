@@ -8,7 +8,7 @@ repos:
 -   repo: local
     hooks:
     -   id: black
-        name: Black
+        name: black
         description: "Black: The uncompromising Python code formatter"
         entry: black
         language: python
@@ -19,3 +19,13 @@ repos:
         entry: isort
         language: python
         types: [python]
+    - id: pylint
+      name: pylint
+      entry: pylint
+      language: system
+      types: [python]
+      args:
+        [
+          "-rn", # Only display messages
+          "-sn", # Don't display the score
+        ]

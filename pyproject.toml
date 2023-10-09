@@ -18,6 +18,7 @@ dependencies = [
 dev = [
     "black",
     "isort",
+    "pylint",
     "pre-commit",
 ]
 
@@ -37,7 +38,7 @@ include_trailing_comma = true
 
 [tool.black]
 line-length = 120
-target_version = ['py36']
+target_version = ["py311"]
 include = '\.pyi?$'
 exclude = '''
 (
