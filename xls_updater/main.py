@@ -1,18 +1,9 @@
-"""Module providing util to convert xls to newer xlsx."""
+"""Module to convert xls to newer xlsx."""
 import click
 import xlrd
 from openpyxl.workbook import Workbook
 
-
-def change_file_extension_with_string_methods(filename, new_extension):
-    """Function updating the given filename string to a given extention."""
-    if "." in filename:
-        name, old_extension = filename.rsplit(".", 1)
-        print(f"Replacing old '{old_extension}' with new '{new_extension}' extension")
-        new_filename = name + "." + new_extension
-    else:
-        new_filename = filename + "." + new_extension
-    return new_filename
+from xls_updater.utils import change_file_extension_with_string_methods
 
 
 @click.command()
