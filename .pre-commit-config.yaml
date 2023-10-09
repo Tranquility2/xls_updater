@@ -8,12 +8,14 @@ repos:
 -   repo: local
     hooks:
     -   id: black
-        name: black
+        name: Black
+        description: "Black: The uncompromising Python code formatter"
         entry: black
-        language: system
+        language: python
         types: [python]
     -   id: isort
         name: isort
+        description: "isort your imports, so you don't have to"
         entry: isort
-        language: system
+        language: python
         types: [python]
