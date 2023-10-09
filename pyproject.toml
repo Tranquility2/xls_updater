@@ -17,6 +17,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "black",
+    "isort",
 ]
 
 [project.urls]
@@ -27,6 +28,11 @@ repository = "https://github.com/Tranquility2/xls_updater"
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
+
+[tool.isort]
+multi_line_output = 3
+line_length = 88
+include_trailing_comma = true
 
 [tool.black]
 line-length = 88
