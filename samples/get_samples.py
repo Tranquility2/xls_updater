@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Util to easly fetch sample xls files."""
 
+import json
 import logging
 from dataclasses import dataclass
 from urllib.error import HTTPError
@@ -10,36 +11,38 @@ logging.basicConfig(encoding="utf-8", level=logging.INFO, format="%(asctime)-15s
 
 
 @dataclass
-class Source:
+class SampleSource:
     """Class representing a source"""
 
-    url: str
-    filename: str
+    remote_url: str
+    local_filename: str
 
-    def download_from_source(self):
-        """Function used to download files."""
-        logging.info("Fetching %s", self.filename)
-        request = Request(url=self.url, headers={"User-Agent": "Mozilla/5.0"})
-        try:
-            with urlopen(url=request, timeout=10) as connection:
-                data = connection.read()
-        except HTTPError as exp:
-            logging.exception(exp)
-        else:
-            with open(self.filename, "wb") as output:
-                output.write(data)
+
+def download_from_source(source: SampleSource):
+    """Function used to download files."""
+
+    logging.info("Fetching %s", source.local_filename)
+    request = Request(url=source.remote_url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urlopen(url=request, timeout=10) as connection:
+            data = connection.read()
+    except HTTPError as exp:
+        logging.exception(exp)
+    else:
+        with open(source.local_filename, "wb") as output:
+            output.write(data)
 
 
 def get_samples():
-    """Function fetching samples."""
-    sample_list = [
-        Source(url="https://www.cmu.edu/blackboard/files/evaluate/tests-example.xls", filename="example.xls"),
-        Source(url="https://www.dwsamplefiles.com/?dl_id=179", filename="sample1.xls"),
-        Source(url="https://www.dwsamplefiles.com/?dl_id=180", filename="sample2.xls"),
-    ]
+    """Function used to fetch samples."""
 
-    for sample in sample_list:
-        sample.download_from_source()
+    with open("samples.json", encoding="utf-8") as config_file:
+        sample_configs = json.load(config_file).get("samples")
+
+    for sample_config in sample_configs:
+        download_from_source(
+            SampleSource(remote_url=sample_config.get("remote_url"), local_filename=sample_config.get("local_filename"))
+        )
 
 
 if __name__ == "__main__":
