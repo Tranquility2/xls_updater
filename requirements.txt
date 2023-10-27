@@ -1,0 +1,4 @@
+click==8.1.7              # via xls-updater (pyproject.toml)
+et-xmlfile==1.1.0         # via openpyxl
+openpyxl==3.1.2           # via xls-updater (pyproject.toml)
+xlrd==2.0.1               # via xls-updater (pyproject.toml)

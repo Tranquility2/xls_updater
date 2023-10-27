@@ -1,0 +1,26 @@
+astroid==3.0.1            # via pylint
+black==23.10.1            # via xls-updater (pyproject.toml)
+cfgv==3.4.0               # via pre-commit
+click==8.1.7              # via black, xls-updater (pyproject.toml)
+dill==0.3.7               # via pylint
+distlib==0.3.7            # via virtualenv
+et-xmlfile==1.1.0         # via openpyxl
+filelock==3.12.4          # via virtualenv
+identify==2.5.30          # via pre-commit
+isort==5.12.0             # via pylint, xls-updater (pyproject.toml)
+mccabe==0.7.0             # via pylint
+mypy-extensions==1.0.0    # via black
+nodeenv==1.8.0            # via pre-commit
+openpyxl==3.1.2           # via xls-updater (pyproject.toml)
+packaging==23.2           # via black
+pathspec==0.11.2          # via black
+platformdirs==3.11.0      # via black, pylint, virtualenv
+pre-commit==3.5.0         # via xls-updater (pyproject.toml)
+pylint==3.0.2             # via xls-updater (pyproject.toml)
+pyyaml==6.0.1             # via pre-commit
+tomlkit==0.12.1           # via pylint
+virtualenv==20.24.6       # via pre-commit
+xlrd==2.0.1               # via xls-updater (pyproject.toml)
+
+# The following packages are considered to be unsafe in a requirements file:
+# setuptools
