@@ -30,6 +30,13 @@ repository = "https://github.com/Tranquility2/xls_updater"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[tool.pip-tools]
+quiet = true
+rebuild = true
+strip-extras = true
+no-header = true
+annotation-style = "line"
+
 [tool.setuptools.packages.find]
 include = ["xls_updater*"]
 exclude = ["samples*", "tests*"]
