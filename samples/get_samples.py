@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Util to easly fetch sample xls files."""
+"""Util to easly fetch sample samples files."""
 
 import json
 import logging
@@ -8,6 +8,22 @@ from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
 logging.basicConfig(encoding="utf-8", level=logging.INFO, format="%(asctime)-15s %(levelname)-8s | %(message)s")
+
+SOURCES_FILE = "samples.json"
+
+# JSON Example:
+# {
+#   "samples": [
+#     {
+#       "remote_url": "https://www.test.edu/smaples/files/new/tests-example.xls",
+#       "local_filename": "sample1.xls"
+#     },
+#     {
+#       "remote_url": "https://www.somesite.com/?dl_id=111",
+#       "local_filename": "sample2.xls"
+#     }
+#   ]
+# }
 
 
 @dataclass
@@ -36,7 +52,7 @@ def download_from_source(source: SampleSource):
 def get_samples():
     """Function used to fetch samples."""
 
-    with open("samples.json", encoding="utf-8") as config_file:
+    with open(SOURCES_FILE, encoding="utf-8") as config_file:
         sample_configs = json.load(config_file).get("samples")
 
     for sample_config in sample_configs:
