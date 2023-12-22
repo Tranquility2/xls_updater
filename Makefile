@@ -16,7 +16,7 @@ pip-clean:
 	pip uninstall -y -r <(pip freeze)
 
 clean:
-	rm -rf **/__pycache__ **/.pytest_cache/ ./dist/ ./.mypy_cache/ ./.coverage ./*.egg-info build
+	rm -rf **/__pycache__ .pytest_cache/ ./dist/ ./.mypy_cache/ ./.coverage ./*.egg-info build
 
 fix-format:
 	black .
@@ -32,6 +32,14 @@ check-lint:
 	@pylint --reports=True xls_updater
 
 check-format: | check-black check-isort
+
+run-tests:
+	python3 -m pytest -v
+
+coverage:
+	coverage run --source=xls_updater --module pytest --verbose tests && coverage report --show-missing
+
+tests: | run-tests coverage
 
 compile:
 ifndef COMPILE_READY
