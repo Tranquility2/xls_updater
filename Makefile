@@ -24,8 +24,12 @@ fix-format:
 
 check-black:
 	black --diff --check .
+
 check-isort:
 	isort --diff --check .
+
+check-lint:
+	@pylint --reports=True xls_updater
 
 check-format: | check-black check-isort
 

@@ -68,3 +68,9 @@ exclude = '''
                      # the root of the project
 )
 '''
+
+[tool.pylint.main]
+fail-under = 10.0
+
+[tool.pylint.format]
+max-line-length = 120
