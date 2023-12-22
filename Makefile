@@ -51,3 +51,7 @@ ifndef COMPILE_READY
 endif
 	python -m piptools compile -o requirements.txt pyproject.toml
 	python -m piptools compile -o requirements-dev.txt --extra dev pyproject.toml
+
+build:
+	pip install --upgrade build
+	python -m build
