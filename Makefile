@@ -29,7 +29,7 @@ check-isort:
 	isort --diff --check .
 
 check-lint:
-	@pylint --reports=True xls_updater
+	pylint --reports=True xls_updater
 
 check-format: | check-black check-isort
 
@@ -42,7 +42,7 @@ coverage:
 tests: | run-tests coverage
 
 check-mypy:
-	@mypy -p xls_updater
+	mypy -p xls_updater
 
 compile:
 ifndef COMPILE_READY
