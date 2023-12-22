@@ -10,13 +10,24 @@ setup:
 	pip install .
 
 setup-dev:
-	pip install '.[dev]'
+	python3 -m pip install --editable '.[dev]'
 
 pip-clean:
 	pip uninstall -y -r <(pip freeze)
 
 clean:
-	rm -rf __pycache__
+	rm -rf **/__pycache__ **/.pytest_cache/ ./dist/ ./.mypy_cache/ ./.coverage ./*.egg-info build
+
+fix-format:
+	black .
+	isort .
+
+check-black:
+	black --diff --check .
+check-isort:
+	isort --diff --check .
+
+check-format: | check-black check-isort
 
 compile:
 ifndef COMPILE_READY
