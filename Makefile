@@ -16,7 +16,7 @@ pip-clean:
 	pip uninstall -y -r <(pip freeze)
 
 clean:
-	rm -rf **/__pycache__ .pytest_cache/ ./dist/ ./.mypy_cache/ ./.coverage ./*.egg-info build
+	rm -rf **/__pycache__ .pytest_cache/ ./dist/ .mypy_cache/ .coverage *.egg-info build
 
 fix-format:
 	black .
