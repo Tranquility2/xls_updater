@@ -1,7 +1,7 @@
 """Module providing utils."""
 
 
-def change_file_extension_with_string_methods(filename, new_extension):
+def change_file_extension_with_string_methods(filename: str, new_extension: str) -> str:
     """Function updating the given filename string to a given extention."""
     if "." in filename:
         name, old_extension = filename.rsplit(".", 1)

@@ -8,7 +8,7 @@ from click.testing import CliRunner
 from xls_updater.app import cli
 
 
-def create_test_excel_file():
+def create_test_excel_file() -> None:
     """Create test excel file."""
     book = xlwt.Workbook()
     sheet = book.add_sheet("Sheet")
@@ -18,7 +18,7 @@ def create_test_excel_file():
     book.save("sample.xls")
 
 
-def test_main():
+def test_main() -> None:
     """Test app."""
     runner = CliRunner()
 
@@ -27,8 +27,8 @@ def test_main():
         create_test_excel_file()
         # convert it to xls
         result = runner.invoke(cli, ["sample.xls"])
+        assert result.exit_code == 0, result.output
         assert result.output == "Replacing old 'xls' with new 'xlsx' extension\nOutput=sample.xlsx\n"
-        assert result.exit_code == 0
         assert Path("sample.xlsx").exists()
         # check content
         book_xlsx = openpyxl.load_workbook("sample.xlsx")

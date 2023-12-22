@@ -41,6 +41,9 @@ coverage:
 
 tests: | run-tests coverage
 
+check-mypy:
+	@mypy -p xls_updater
+
 compile:
 ifndef COMPILE_READY
 	@echo "Installing pip-tools"
