@@ -1,7 +1,6 @@
 .PHONY: run clean
 
 SHELL=/bin/bash
-COMPILE_READY := $(shell command -v pip-compile 2> /dev/null)
 
 run:
 	python xls_updater/app.py
@@ -16,7 +15,7 @@ pip-clean:
 	pip uninstall -y -r <(pip freeze)
 
 clean:
-	rm -rf **/__pycache__ .pytest_cache/ ./dist/ .mypy_cache/ .coverage *.egg-info build
+	rm -rf **/__pycache__ .pytest_cache/ dist/ .mypy_cache/ .coverage *.egg-info build
 
 fix-format:
 	black .
@@ -37,7 +36,8 @@ run-tests:
 	python3 -m pytest -v
 
 coverage:
-	coverage run --source=xls_updater --module pytest --verbose tests && coverage report --show-missing
+	coverage run --source=xls_updater --module pytest \
+	--verbose tests && coverage report --show-missing
 
 tests: | run-tests coverage
 
@@ -45,10 +45,7 @@ check-mypy:
 	mypy -p xls_updater
 
 compile:
-ifndef COMPILE_READY
-	@echo "Installing pip-tools"
-	python -m pip install pip-tools==7.3.0
-endif
+	pip install --upgrade pip-tools
 	python -m piptools compile -o requirements.txt pyproject.toml
 	python -m piptools compile -o requirements-dev.txt --extra dev pyproject.toml
 
