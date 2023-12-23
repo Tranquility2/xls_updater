@@ -17,31 +17,31 @@ pip-clean:
 clean:
 	rm -rf **/__pycache__ .pytest_cache/ dist/ .mypy_cache/ .coverage *.egg-info build
 
-fix-format:
-	black .
-	isort .
-
 check-black:
 	black --diff --check .
 
 check-isort:
 	isort --diff --check .
 
-check-lint:
-	pylint --reports=True xls_updater
-
 check-format: | check-black check-isort
 
-run-tests:
+fix-format:
+	black .
+	isort .
+
+lint:
+	pylint --reports=True xls_updater
+
+pytest:
 	python3 -m pytest -v
 
 coverage:
 	coverage run --source=xls_updater --module pytest \
 	--verbose tests && coverage report --show-missing
 
-tests: | run-tests coverage
+tests: | pytest coverage
 
-check-mypy:
+mypy:
 	mypy -p xls_updater
 
 compile:

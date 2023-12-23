@@ -1,0 +1,105 @@
+name: PR Validations
+on: [ pull_request ]
+
+jobs:
+  black:
+    name: "Black Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Prepare Environment
+        uses: ./.github/actions/prepare-environment
+      - name: Run Black
+        shell: bash
+        run: |
+          make check-black
+
+  isort:
+    name: "Isort Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Prepare Environment
+        uses: ./.github/actions/prepare-environment
+      - name: Run Isort
+        shell: bash
+        run: |
+          make check-isort
+
+  pytest:
+    name: "Run Tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Prepare Environment
+        uses: ./.github/actions/prepare-environment
+      - name: Run Tests
+        shell: bash
+        run: |
+          make pytest
+
+  coverage:
+    name: "Code Coverage Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Prepare Environment
+        uses: ./.github/actions/prepare-environment
+      - name: Run Code Coverage
+        shell: bash
+        run: |
+          make coverage
+
+  mypy:
+    name: "Mypy Validation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Prepare Environment
+        uses: ./.github/actions/prepare-environment
+      - name: Run Mypy
+        shell: bash
+        run: |
+          make mypy
+
+  post-validation:
+    needs: [black, isort, pytest, coverage, mypy]
+    name: "Post Validation"
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - id: post-validation-output
+        run: echo "success=true" >> $GITHUB_OUTPUT
+    outputs:
+      success: ${{ steps.post-validation-output.outputs.success }}
+
+  checks-and-validation:
+    needs: post-validation
+    name: "Checks & Validation"
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - run: |
+          passed="${{ needs.post-validation.outputs.success }}"
+          if [[ $passed == "true" ]]; then
+            echo "Checks & Validation Passed"
+            exit 0
+          else
+            echo "Checks & Validation Failed"
+            exit 1
+          fi
