@@ -42,7 +42,7 @@ annotation-style = "line"
 
 [tool.setuptools.packages.find]
 include = ["xls_updater*"]
-exclude = ["samples*", "tests*"]
+exclude = ["tests*"]
 
 [tool.isort]
 multi_line_output = 3
@@ -81,6 +81,7 @@ max-line-length = 120
 [tool.coverage.run]
 omit = [
     "xls_updater/tests/*",
+    "xls_updater/__main__.py",
 ]
 
 [tool.coverage.report]

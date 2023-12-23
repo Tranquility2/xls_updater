@@ -1,5 +1,4 @@
 """Module to convert xls to newer xlsx."""
-import click
 import xlrd
 from openpyxl.workbook import Workbook
 
@@ -27,15 +26,3 @@ def convert_xls_to_xlsx(src_file_path: str) -> None:
                 sheet_xlsx.cell(row=row + 1, column=col + 1).value = sheet_xls.cell_value(row, col)
 
     book_xlsx.save(dst_file_path)
-
-
-@click.command()
-@click.argument("src_file_path", type=click.Path(exists=True))
-def cli(src_file_path: str) -> None:
-    """Wrapper for convert_xls_to_xlsx function"""
-    convert_xls_to_xlsx(src_file_path)
-
-
-if __name__ == "__main__":
-    # pylint: disable=no-value-for-parameter
-    cli()  # pragma: no cover
