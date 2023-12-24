@@ -1,12 +1,11 @@
 [project]
 name = "xls-updater"
-version = "0.0.1"
 description = "Convert legacy xls data to newer xlsx format."
 requires-python = ">=3.11"
 authors = [
     {name = "Roy Moore", email="roy@moore.co.il"}
 ]
-
+dynamic = ["version"]
 dependencies = [
     "click==8.1.7",
     "openpyxl==3.1.2",
@@ -30,8 +29,22 @@ homepage = "https://github.com/Tranquility2/xls_updater"
 repository = "https://github.com/Tranquility2/xls_updater"
 
 [build-system]
-requires = ["hatchling"]
+requires = [
+    "hatchling",
+    "versioningit",
+]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "versioningit"
+
+[tool.versioningit.vcs]
+default-tag = "0.0.0"
+match = ["v*", ]
+method = "git"
+
+[tool.versioningit.tag2version]
+rmprefix = "v"
 
 [tool.pip-tools]
 quiet = true
