@@ -29,7 +29,7 @@ fix-format:
 	python3 -m black .
 	python3 -m isort .
 
-lint:
+check-lint:
 	python3 -m pylint --reports=True xls_updater
 
 pytest:
@@ -41,7 +41,7 @@ coverage:
 
 tests: | pytest coverage
 
-mypy:
+check-mypy:
 	python3 -m mypy -p xls_updater
 
 compile:
