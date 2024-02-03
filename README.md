@@ -6,34 +6,17 @@ Convert legacy xls data to newer xlsx format.
 
 [Based on the kind comment made by Jackypengyu](https://stackoverflow.com/a/39461816 "Link")
 
-### Code Style and Linting
 
-Please use The following tools for code style and linting:
 
-- Black
-- Isort
-- Pylint
-- Mypy
 
-All are configured in the Pyproject.toml file
 
-Pre-commit hooks are configured to run these tools automatically on commit.
 
-Please install them by running: ``pre-commit install``
+## Development
 
-### Testing
+Please see [CONTRIBUTING.md](https://github.com/Tranquility2/xls_updater/blob/master/CONTRIBUTING.md)
 
-Please use pytest for testing. Run tests with ``make tests``.
+## License
 
-### Workflow
+This project is published under the MIT license.
 
-This repo uses the [Trunk Based Development](https://trunkbaseddevelopment.com/) workflow.
-
-### Branching
-
-The main branch is `main`.
-All development should be done in feature branches and merged into `main` via pull requests.
-
-### Versioning
-
-This repo uses [Semantic Versioning](https://semver.org/).
+If you do find it useful, please consider contributing your changes back upstream.
