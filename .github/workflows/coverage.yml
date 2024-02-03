@@ -20,4 +20,5 @@ jobs:
       run: |
         make coverage
     - name: Report Coveralls
+      if: github.ref == 'refs/heads/master'
       uses: coverallsapp/github-action@v2
