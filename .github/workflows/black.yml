@@ -1,0 +1,15 @@
+name: Black
+on: [ pull_request, workflow_dispatch ]
+
+jobs:
+  build:
+    name: Black Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare Environment
+      uses: ./.github/actions/prepare-environment
+    - name: Validate using Black
+      run: |
+        make check-black

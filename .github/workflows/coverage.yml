@@ -1,0 +1,17 @@
+name: Coverage
+on: [ pull_request, workflow_dispatch ]
+
+jobs:
+  build:
+    name: Coverage Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare Environment
+      uses: ./.github/actions/prepare-environment
+    - name: Check code coverage
+      run: |
+        make coverage
+    - name: Report Coveralls
+      uses: coverallsapp/github-action@v2

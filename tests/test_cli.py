@@ -18,7 +18,7 @@ def create_test_excel_file() -> None:
     book.save("sample.xls")
 
 
-def test_main() -> None:
+def test_cli() -> None:
     """Test app."""
     runner = CliRunner()
 
