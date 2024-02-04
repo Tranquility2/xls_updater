@@ -24,6 +24,7 @@ dev = [
     "mypy",
     "xlwt==1.*",
     "pandas==2.*",
+    "pyarrow==15.*",
 ]
 
 [project.urls]
