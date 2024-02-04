@@ -20,6 +20,7 @@ dev = [
     "pre-commit",
     "pytest",
     "pytest-cov",
+    "pytest_mock",
     "mypy",
     "xlwt==1.*",
     "pandas==2.*",
