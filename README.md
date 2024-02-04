@@ -6,6 +6,19 @@ Convert legacy xls data to newer xlsx format.
 
 [Based on the kind comment made by Jackypengyu](https://stackoverflow.com/a/39461816 "Link")
 
+
+## Usage
+
+```
+Usage: python -m xls_updater [OPTIONS] SRC_FILE_PATH
+
+  Convert an xls file to xlsx.
+
+Options:
+  --version  Show the version and exit.
+  --help     Show this message and exit.
+```
+
 ## Development
 
 Please see [CONTRIBUTING.md](https://github.com/Tranquility2/xls_updater/blob/master/CONTRIBUTING.md)

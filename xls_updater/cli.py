@@ -8,5 +8,5 @@ from xls_updater.app import convert_xls_to_xlsx
 @click.argument("src_file_path", type=click.Path(exists=True))
 @click.version_option()
 def cli(src_file_path: str) -> None:
-    """Wrapper for convert_xls_to_xlsx function"""
+    """Convert an xls file to xlsx."""
     convert_xls_to_xlsx(src_file_path)
