@@ -21,8 +21,8 @@ dev = [
     "pytest",
     "pytest-cov",
     "mypy",
-    "xlwt==1.3.0",
-    "pandas==2.1.4",
+    "xlwt==1.*",
+    "pandas==2.*",
 ]
 
 [project.urls]
