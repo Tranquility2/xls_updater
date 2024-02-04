@@ -43,15 +43,12 @@ jobs:
           ref: ${{ github.ref }}
           fetch-depth: 0
 
-      - name: Setup semvergit
-        run: |
-          python -m pip install semvergit
-
       - name: Bump Version
         id: bump_version
         env:
           BUMP_TYPE: ${{ github.event.inputs.bump_type }}
         run: |
+          python -m pip install semvergit
           echo "Bumping type: ${{ env.BUMP_TYPE }}"
           new_version=$(semvergit -t ${{ env.BUMP_TYPE }} -v)
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
