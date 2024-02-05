@@ -21,7 +21,7 @@ def create_test_excel_file() -> None:
 def test_convert_xls_to_xlsx() -> None:
     """Test convert_xls_to_xlsx."""
     create_test_excel_file()
-    convert_xls_to_xlsx("sample.xls")
+    convert_xls_to_xlsx(Path("sample.xls"))
     assert Path("sample.xlsx").exists()
     # check content
     book_xlsx = openpyxl.load_workbook("sample.xlsx")

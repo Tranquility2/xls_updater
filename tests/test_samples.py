@@ -1,4 +1,5 @@
 """ Test that all sample files are converted to xlsx correctly """
+
 from pathlib import Path
 from typing import List
 
@@ -18,7 +19,7 @@ def genrate_sample_files_list(sample_dir: Path) -> List[Path]:
 def convert_sample_files(sample_files: List[Path]) -> List[Path]:
     """Convert sample files to xlsx and return list of converted files"""
     for sample_file in sample_files:
-        convert_xls_to_xlsx(str(sample_file))
+        convert_xls_to_xlsx(Path(sample_file))
 
     # generate list of converted files
     converted_files = [f.with_suffix(".xlsx") for f in sample_files]

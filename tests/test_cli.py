@@ -24,5 +24,5 @@ def test_cli(convert_xls_to_xlsx: MagicMock) -> None:
         Path("sample.xls").touch()
         result = runner.invoke(cli, ["sample.xls"])
         assert result.exit_code == 0, result.output
-        convert_xls_to_xlsx.assert_called_once_with("sample.xls")
+        convert_xls_to_xlsx.assert_called_once_with(Path("sample.xls"))
         Path("sample.xls").unlink()
