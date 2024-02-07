@@ -30,8 +30,6 @@ def test_convert_xls_to_xlsx() -> None:
     """Test that all sample files are converted to xlsx correctly"""
     sample_files = genrate_sample_files_list(SAMPLES_SOURCE_DIR)
     converted_sample_files = convert_sample_files(sample_files)
-    print(f"{sample_files=}")
-    print(f"{converted_sample_files=}")
 
     # check that all files were converted
     for sample_file in converted_sample_files:

@@ -9,7 +9,6 @@ from openpyxl.workbook import Workbook
 def convert_xls_to_xlsx(src_file_path: pathlib.Path) -> None:
     """Function converting the given xls file to the newer xlsx format."""
     dst_file_path = src_file_path.with_suffix(".xlsx")
-    print(f"Output={dst_file_path}")
     book_xls = xlrd.open_workbook(src_file_path)
     book_xlsx = Workbook()
 
