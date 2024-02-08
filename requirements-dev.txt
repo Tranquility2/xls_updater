@@ -10,6 +10,7 @@ distlib==0.3.7            # via virtualenv
 et-xmlfile==1.1.0         # via openpyxl
 filelock==3.12.4          # via virtualenv
 grapheme==0.6.0           # via alive-progress
+humanize==4.9.0           # via xls-updater (pyproject.toml)
 identify==2.5.30          # via pre-commit
 iniconfig==2.0.0          # via pytest
 isort==5.12.0             # via pylint, xls-updater (pyproject.toml)
