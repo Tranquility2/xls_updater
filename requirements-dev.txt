@@ -1,3 +1,5 @@
+about-time==4.2.1         # via alive-progress
+alive-progress==3.1.5     # via xls-updater (pyproject.toml)
 astroid==3.0.1            # via pylint
 black==23.10.1            # via xls-updater (pyproject.toml)
 cfgv==3.4.0               # via pre-commit
@@ -7,6 +9,7 @@ dill==0.3.7               # via pylint
 distlib==0.3.7            # via virtualenv
 et-xmlfile==1.1.0         # via openpyxl
 filelock==3.12.4          # via virtualenv
+grapheme==0.6.0           # via alive-progress
 identify==2.5.30          # via pre-commit
 iniconfig==2.0.0          # via pytest
 isort==5.12.0             # via pylint, xls-updater (pyproject.toml)
