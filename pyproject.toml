@@ -29,6 +29,9 @@ dev = [
     "humanize"
 ]
 
+[project.scripts]
+xls-updater = "xls_updater.cli:cli"
+
 [project.urls]
 homepage = "https://github.com/Tranquility2/xls_updater"
 repository = "https://github.com/Tranquility2/xls_updater"
