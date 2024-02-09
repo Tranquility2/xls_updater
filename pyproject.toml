@@ -2,17 +2,32 @@
 name = "xls-updater"
 description = "Convert legacy xls data to newer xlsx format."
 requires-python = ">=3.11"
+dynamic = ["version"]
+keywords = [
+    "converter",
+    "xls",
+    "xlsx",
+    "excel",
+    "spreadsheet",
+    "fileformat",
+]
 authors = [
     {name = "Roy Moore", email="roy@moore.co.il"}
 ]
-dynamic = ["version"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Office/Business :: Financial :: Spreadsheet",
+    "Topic :: File Formats :: Conversion",
+]
 dependencies = [
     "click==8.1.7",
     "openpyxl==3.1.2",
     "xlrd==2.0.1",
     "alive_progress==3.1.5"
 ]
-
 [project.optional-dependencies]
 dev = [
     "black",
