@@ -1,6 +1,7 @@
 [project]
 name = "xls-updater"
 description = "Convert legacy xls data to newer xlsx format."
+readme = "README.md"
 requires-python = ">=3.11"
 dynamic = ["version"]
 keywords = [
