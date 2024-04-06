@@ -51,6 +51,7 @@ compile:
 	python3 -m pip install --upgrade pip-tools
 	python3 -m piptools compile -o requirements.txt pyproject.toml
 	python3 -m piptools compile -o requirements-dev.txt --extra dev pyproject.toml
+	python3 -m piptools compile -o requirements-test.txt --extra test pyproject.toml
 
 build:
 	python3 -m pip install --upgrade build
