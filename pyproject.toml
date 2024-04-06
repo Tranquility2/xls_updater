@@ -2,7 +2,7 @@
 name = "xls-updater"
 description = "Convert legacy xls data to newer xlsx format."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 dynamic = ["version"]
 keywords = [
     "converter",
@@ -19,7 +19,9 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
+    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "Topic :: Office/Business :: Financial :: Spreadsheet",
     "Topic :: File Formats",
 ]
