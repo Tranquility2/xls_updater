@@ -14,8 +14,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Prepare Environment
-      uses: ./.github/actions/prepare-environment
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements-test.txt
     - name: Check code coverage
       run: |
         make coverage
