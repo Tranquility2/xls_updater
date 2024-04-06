@@ -11,6 +11,9 @@ setup:
 setup-dev:
 	python3 -m pip install --editable '.[dev]'
 
+setup-test:
+	python3 -m pip install --editable '.[test]'
+
 pip-clean:
 	python3 -m pip uninstall -y -r <(pip freeze)
 

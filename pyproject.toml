@@ -37,14 +37,16 @@ dev = [
     "isort",
     "pylint",
     "pre-commit",
+    "mypy",
+]
+test = [
+    "xlwt==1.*",
+    "pyarrow==15.*",
+    "humanize",
+    "pandas==2.*",
     "pytest",
     "pytest-cov",
     "pytest_mock",
-    "mypy",
-    "xlwt==1.*",
-    "pandas==2.*",
-    "pyarrow==15.*",
-    "humanize"
 ]
 
 [project.scripts]
