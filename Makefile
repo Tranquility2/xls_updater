@@ -6,7 +6,7 @@ run:
 	python3 xls_updater/app.py
 
 setup:
-	python3 -m pip install .
+	python3 -m pip install --editable '.[dev,test]'
 
 setup-dev:
 	python3 -m pip install --editable '.[dev]'
