@@ -1,7 +1,0 @@
-about-time==4.2.1         # via alive-progress
-alive-progress==3.1.5     # via xls-updater (pyproject.toml)
-click==8.1.7              # via xls-updater (pyproject.toml)
-et-xmlfile==1.1.0         # via openpyxl
-grapheme==0.6.0           # via alive-progress
-openpyxl==3.1.2           # via xls-updater (pyproject.toml)
-xlrd==2.0.1               # via xls-updater (pyproject.toml)
