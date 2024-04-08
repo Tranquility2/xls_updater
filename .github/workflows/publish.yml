@@ -23,11 +23,6 @@ on:
         description: Publish To PyPI
         type: boolean
         default: true
-      bundle:
-        required: true
-        description: Create Binary Bundle
-        type: boolean
-        default: true
 
 jobs:
   publish-package:
@@ -35,6 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    needs: bundle
 
     steps:
       - name: Prepare Python
@@ -68,10 +64,15 @@ jobs:
         uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARTIFACT_ID: ${{ needs.bundle.outputs.artifact-id }}
         with:
           tag_name: ${{ steps.bump_version.outputs.new_version }}
           release_name: ${{ steps.bump_version.outputs.new_version }}
           body: New Release ${{ steps.bump_version.outputs.new_version }}
+          files: |
+            dist/xls_updater
+            dist/xls_updater.md5
+            dist/xls_updater.sha256
 
       - name: Build Package
         if: ${{ github.event.inputs.publish == 'true' }}
@@ -88,10 +89,10 @@ jobs:
 
   bundle:
     name: Bundle
-    if: ${{ github.event.inputs.bundle == 'true' }}
+    id: bundle
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+    outputs:
+      artifact-id: ${{ steps.artifact-upload-step.outputs.artifact-id }}
 
     steps:
       - name: Checkout
@@ -109,15 +110,23 @@ jobs:
         run: |
           python -m pyinstaller xls_updater.spec
 
-      - name: Print Bundle info
+      - name: Bundle info
         run: |
+          md5sum dist/xls_updater | cut -d ' ' -f1 > dist/xls_updater.md5
+          sha256sum dist/xls_updater | cut -d ' ' -f1 > dist/xls_updater.sha256
           echo "Bundle Info"
           echo "============"
           echo "Size: $(du -sh dist/xls_updater | cut -f1)"
-          echo "MD5: $(md5sum dist/xls_updater | cut -d ' ' -f1)"
+          echo "MD5: $(cat dist/xls_updater.md5)"
+          echo "SHA256: $(cat dist/xls_updater.sha256)"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
+        id: artifact-upload-step
         with:
           name: xls_updater
           path: dist/xls_updater
+
+      - name: Output artifact ID
+        run: |
+          echo "Artifact ID is ${{ steps.artifact-upload-step.outputs.artifact-id }}"
