@@ -8,15 +8,6 @@ run:
 setup:
 	python3 -m pip install '.[dev, test, release]'
 
-setup-dev:
-	python3 -m pip install --editable '.[dev]'
-
-setup-test:
-	python3 -m pip install --editable '.[test]'
-
-setup-relase:
-	python3 -m pip install --editable '.[release]'
-
 pip-clean:
 	python3 -m pip uninstall -y -r <(pip freeze)
 
