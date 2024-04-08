@@ -53,6 +53,9 @@ release = [
     "build",
     "twine",
 ]
+bin = [
+    "pyinstaller",
+]
 
 [project.scripts]
 xls-updater = "xls_updater.cli:cli"
