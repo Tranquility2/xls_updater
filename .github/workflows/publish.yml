@@ -15,17 +15,17 @@ on:
         default: patch
       release:
         required: true
-        description: Release
+        description: Create Github Release
         type: boolean
         default: true
       publish:
         required: true
-        description: Publish
+        description: Publish To PyPI
         type: boolean
         default: true
-      compile:
+      bundle:
         required: true
-        description: Compile
+        description: Create Binary Bundle
         type: boolean
         default: true
 
@@ -86,9 +86,9 @@ jobs:
         run: |
           python -m twine upload dist/*
 
-  compile:
-    name: Compile
-    if: ${{ github.event.inputs.compile == 'true' }}
+  bundle:
+    name: Bundle
+    if: ${{ github.event.inputs.bundle == 'true' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -105,7 +105,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install '.[bin]'
 
-      - name: Compile
+      - name: Create Binary Bundle
         run: |
           python -m pyinstaller xls_updater.spec
 
