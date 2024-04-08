@@ -105,9 +105,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install '.[bin]'
 
-      - name: Create Binary Bundle
+      - name: Create binary bundle
         run: |
           python -m pyinstaller xls_updater.spec
+
+      - name: Print Bundle info
+        run: |
+          echo "Bundle Info"
+          echo "============"
+          echo "Size: $(du -sh dist/xls_updater | cut -f1)"
+          echo "MD5: $(md5sum dist/xls_updater | cut -d ' ' -f1)"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
