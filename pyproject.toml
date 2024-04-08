@@ -48,6 +48,11 @@ test = [
     "pytest-cov",
     "pytest_mock",
 ]
+release = [
+    "semvergit",
+    "build",
+    "twine",
+]
 
 [project.scripts]
 xls-updater = "xls_updater.cli:cli"
