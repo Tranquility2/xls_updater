@@ -2,7 +2,7 @@ name: Black
 on: [ pull_request, workflow_dispatch ]
 
 jobs:
-  build:
+  black:
     name: Black Validation
     runs-on: ubuntu-latest
 

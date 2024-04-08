@@ -2,7 +2,7 @@ name: Pytest
 on: [ pull_request, workflow_dispatch ]
 
 jobs:
-  build:
+  pytest:
     name: Pytest Validation
     runs-on: ubuntu-latest
     strategy:

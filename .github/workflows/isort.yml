@@ -2,7 +2,7 @@ name: Isort
 on: [ pull_request, workflow_dispatch ]
 
 jobs:
-  build:
+  isort:
     name: Isort Validation
     runs-on: ubuntu-latest
 
