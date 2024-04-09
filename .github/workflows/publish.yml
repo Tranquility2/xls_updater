@@ -62,7 +62,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: xls_updater
-          path: dist
+          path: artifact
 
       - name: Create Github Release
         if: ${{ github.event.inputs.release == 'true' }}
@@ -75,9 +75,9 @@ jobs:
           release_name: ${{ steps.bump_version.outputs.new_version }}
           body: New Release ${{ steps.bump_version.outputs.new_version }}
           files: |
-            dist/xls_updater
-            dist/xls_updater.md5
-            dist/xls_updater.sha256
+            artifact/xls_updater
+            artifact/xls_updater.md5
+            artifact/xls_updater.sha256
 
       - name: Build Package
         if: ${{ github.event.inputs.publish == 'true' }}
@@ -127,4 +127,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: xls_updater
-          path: dist/xls_updater
+          path: |
+            dist/xls_updater
+            dist/xls_updater.md5
+            dist/xls_updater.sha256
