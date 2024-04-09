@@ -89,7 +89,6 @@ jobs:
 
   bundle:
     name: Bundle
-    id: bundle
     runs-on: ubuntu-latest
     outputs:
       artifact-id: ${{ steps.artifact-upload-step.outputs.artifact-id }}
