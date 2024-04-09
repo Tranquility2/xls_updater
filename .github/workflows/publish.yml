@@ -59,7 +59,7 @@ jobs:
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
 
       - name: Download Binary Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: xls_updater
           path: dist
@@ -111,6 +111,7 @@ jobs:
       - name: Create binary bundle
         run: |
           pyinstaller xls_updater.spec
+          chmod +x dist/xls_updater
 
       - name: Bundle info
         run: |
