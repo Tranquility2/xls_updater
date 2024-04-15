@@ -1,9 +1,9 @@
 [project]
 name = "xls-updater"
+version = "0.1.12"
 description = "Convert legacy xls data to newer xlsx format."
 readme = "README.md"
 requires-python = ">=3.10"
-dynamic = ["version"]
 keywords = [
     "converter",
     "xls",
@@ -65,22 +65,8 @@ homepage = "https://github.com/Tranquility2/xls_updater"
 repository = "https://github.com/Tranquility2/xls_updater"
 
 [build-system]
-requires = [
-    "hatchling",
-    "versioningit",
-]
+requires = ["hatchling"]
 build-backend = "hatchling.build"
-
-[tool.hatch.version]
-source = "versioningit"
-
-[tool.versioningit.vcs]
-default-tag = "0.0.0"
-match = ["v*", ]
-method = "git"
-
-[tool.versioningit.tag2version]
-rmprefix = "v"
 
 [tool.pip-tools]
 quiet = true
@@ -100,24 +86,20 @@ include_trailing_comma = true
 
 [tool.black]
 line-length = 120
-target_version = ["py311"]
 include = '\.pyi?$'
 exclude = '''
 (
   /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.hg
+      \.eggs
+    | \.git
     | \.mypy_cache
     | \.tox
     | \.venv
     | _build
-    | buck-out
     | build
     | dist
   )/
-  | foo.py           # also separately exclude a file named foo.py in
-                     # the root of the project
+  | version.py
 )
 '''
 
