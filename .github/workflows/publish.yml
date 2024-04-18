@@ -55,7 +55,7 @@ jobs:
           BUMP_TYPE: ${{ github.event.inputs.bump_type }}
         run: |
           echo "Bumping type: ${{ env.BUMP_TYPE }}"
-          new_version=$(python -m semvergit -t ${{ env.BUMP_TYPE }} -v)
+          new_version=$(python -m semvergit -v -t ${{ env.BUMP_TYPE }} -f xls_updater/__about__.py)
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
 
       - name: Download Binary Artifact
