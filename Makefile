@@ -30,7 +30,7 @@ check-lint:
 	python3 -m pylint --reports=True xls_updater
 
 pytest:
-	python3 -m pytest -v
+	python3 -m pytest -v --durations=0
 
 coverage:
 	python3 -m coverage run --source=xls_updater --module pytest \
