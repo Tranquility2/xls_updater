@@ -8,6 +8,12 @@ run:
 setup:
 	python3 -m pip install '.[dev, test, release]'
 
+setup-dev:
+	python3 -m pip install '.[dev]'
+
+setup-test:
+	python3 -m pip install '.[test]'
+
 pip-clean:
 	python3 -m pip uninstall -y -r <(pip freeze)
 
@@ -43,5 +49,6 @@ check-mypy:
 
 compile:
 	python3 -m pip install --upgrade pip-tools
-	python3 -m piptools compile -o requirements-dev.txt --extra dev pyproject.toml
-	python3 -m piptools compile -o requirements-test.txt --extra test pyproject.toml
+	python3 -m piptools compile -o requirements/requirements.txt pyproject.toml
+	python3 -m piptools compile -o requirements/requirements-dev.txt --extra dev pyproject.toml
+	python3 -m piptools compile -o requirements/requirements-test.txt --extra test pyproject.toml
