@@ -74,4 +74,8 @@ dmypy.json
 # PyCharm
 .idea/
 
+# VScode
 .vscode/
+
+# temp files
+temp/

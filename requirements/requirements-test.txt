@@ -1,13 +1,13 @@
 click==8.1.7              # via xls-updater (pyproject.toml)
 coverage==7.4.4           # via pytest-cov
 et-xmlfile==1.1.0         # via openpyxl
-exceptiongroup==1.2.0     # via pytest
+exceptiongroup==1.2.1     # via pytest
 humanize==4.9.0           # via xls-updater (pyproject.toml)
 iniconfig==2.0.0          # via pytest
 numpy==1.26.4             # via pandas, pyarrow
 openpyxl==3.1.2           # via xls-updater (pyproject.toml)
 packaging==24.0           # via pytest
-pandas==2.2.1             # via xls-updater (pyproject.toml)
+pandas==2.2.2             # via xls-updater (pyproject.toml)
 pluggy==1.4.0             # via pytest
 pyarrow==15.0.2           # via xls-updater (pyproject.toml)
 pytest==8.1.1             # via pytest-cov, pytest-mock, xls-updater (pyproject.toml)
