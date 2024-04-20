@@ -43,7 +43,8 @@ jobs:
         id: get_version
         run: |
           git_version=$(git describe --tags --abbrev=0)
-          file_version=$(python -c "from xls_updater import __version__; print(__version__)")
+          file_version=$(python -c "from xls_updater import __about__; print(__about__.__version__)")
+          file_version="v$file_version"
           if [ "$git_version" != "$file_version" ]; then
             echo "Version mismatch: git=$git_version, file=$file_version"
             exit 1
