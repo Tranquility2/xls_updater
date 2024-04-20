@@ -42,9 +42,9 @@ jobs:
       - name: Check Version
         id: get_version
         run: |
-          get_version=$(git describe --tags --abbrev=0)
-          echo "Got Version: $get_version"
-          echo "get_version=$get_version" >> $GITHUB_OUTPUT
+          version=$(git describe --tags --abbrev=0)
+          echo "Got Version: $version"
+          echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Download Binary Artifact
         uses: actions/download-artifact@v4
@@ -57,9 +57,9 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ steps.bump_version.outputs.get_version }}
-          tag_name: ${{ steps.bump_version.outputs.get_version }}
-          body: New Release ${{ steps.bump_version.outputs.get_version }}
+          name: ${{ steps.get_version.outputs.version }}
+          tag_name: ${{ steps.get_version.outputs.version }}
+          body: New Release ${{ steps.get_version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             artifact/xls_updater
