@@ -52,3 +52,6 @@ compile:
 	python3 -m piptools compile -o requirements/requirements.txt pyproject.toml
 	python3 -m piptools compile -o requirements/requirements-dev.txt --extra dev pyproject.toml
 	python3 -m piptools compile -o requirements/requirements-test.txt --extra test pyproject.toml
+
+patch:
+	python3 -m semvergit -v -t patch -f xls_updater/__about__.py
