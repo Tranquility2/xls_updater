@@ -3,16 +3,6 @@ name: Publish
 on:
   workflow_dispatch:
     inputs:
-      bump_type:
-        required: true
-        description: Bump Type
-        type: choice
-        options:
-          - prerelease
-          - patch
-          - minor
-          - major
-        default: patch
       release:
         required: true
         description: Create Github Release
@@ -49,20 +39,12 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install '.[release]'
 
-      - name: setup git config
+      - name: Check Version
+        id: get_version
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Bump Version
-        id: bump_version
-        env:
-          BUMP_TYPE: ${{ github.event.inputs.bump_type }}
-        run: |
-          echo "Bumping type: ${{ env.BUMP_TYPE }}"
-          new_version=$(python -m semvergit -v -t ${{ env.BUMP_TYPE }} -f xls_updater/__about__.py)
-          git push origin master
-          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+          get_version=$(git describe --tags --abbrev=0)
+          echo "Got Version: $get_version"
+          echo "get_version=$get_version" >> $GITHUB_OUTPUT
 
       - name: Download Binary Artifact
         uses: actions/download-artifact@v4
@@ -75,9 +57,9 @@ jobs:
         id: create_release
         uses: softprops/action-gh-release@v2
         with:
-          name: ${{ steps.bump_version.outputs.new_version }}
-          tag_name: ${{ steps.bump_version.outputs.new_version }}
-          body: New Release ${{ steps.bump_version.outputs.new_version }}
+          name: ${{ steps.bump_version.outputs.get_version }}
+          tag_name: ${{ steps.bump_version.outputs.get_version }}
+          body: New Release ${{ steps.bump_version.outputs.get_version }}
           token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             artifact/xls_updater
