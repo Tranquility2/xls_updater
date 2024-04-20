@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Prepare Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
@@ -49,6 +49,11 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install '.[release]'
 
+      - name: setup git config
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+
       - name: Bump Version
         id: bump_version
         env:
@@ -56,6 +61,7 @@ jobs:
         run: |
           echo "Bumping type: ${{ env.BUMP_TYPE }}"
           new_version=$(python -m semvergit -v -t ${{ env.BUMP_TYPE }} -f xls_updater/__about__.py)
+          git push origin master
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
 
       - name: Download Binary Artifact
@@ -68,12 +74,11 @@ jobs:
         if: ${{ github.event.inputs.release == 'true' }}
         id: create_release
         uses: softprops/action-gh-release@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          name: ${{ steps.bump_version.outputs.new_version }}
           tag_name: ${{ steps.bump_version.outputs.new_version }}
-          release_name: ${{ steps.bump_version.outputs.new_version }}
           body: New Release ${{ steps.bump_version.outputs.new_version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           files: |
             artifact/xls_updater
             artifact/xls_updater.md5
