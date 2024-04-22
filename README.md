@@ -8,6 +8,22 @@ Convert legacy xls data to newer xlsx format.
 
 💭 [Based on the kind comment made by Jackypengyu](https://stackoverflow.com/a/39461816 "Link")
 
+## Install
+### PIP
+```bash
+pip install xls-updater
+```
+
+### Binary
+A binary version of this tool is available for download:  
+```bash
+wget https://github.com/Tranquility2/xls_updater/releases/latest/download/xls_updater
+chmod +x xls_updater
+```
+Hashes are available for verification:  
+[md5](https://github.com/Tranquility2/xls_updater/releases/latest/download/xls_updater.md5)  
+[sha2256](https://github.com/Tranquility2/xls_updater/releases/latest/download/xls_updater.sha256)
+
 ## Usage
 
 ```
