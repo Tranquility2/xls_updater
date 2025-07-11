@@ -1,4 +1,4 @@
-""" Test that all sample files are converted to xlsx correctly """
+"""Test that all sample files are converted to xlsx correctly"""
 
 from pathlib import Path
 from typing import List
