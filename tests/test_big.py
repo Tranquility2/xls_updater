@@ -1,4 +1,4 @@
-""" Test using a very big generated xls file """
+"""Test using a very big generated xls file"""
 
 from pathlib import Path
 from typing import List
