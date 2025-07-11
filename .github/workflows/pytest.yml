@@ -1,0 +1,20 @@
+name: Pytest
+on: [ pull_request, workflow_dispatch ]
+
+jobs:
+  pytest:
+    name: Pytest Validation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare Environment
+      uses: ./.github/actions/prepare-environment
+      with:
+        python-version: ${{ matrix.python-version }}
+        setup-type: test
+    - name: Checking using Pytest
+      run: |
+        make pytest

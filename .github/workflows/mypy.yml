@@ -1,0 +1,18 @@
+name: Mypy
+on: [ pull_request, workflow_dispatch ]
+
+jobs:
+  mypy:
+    name: Mypy Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare Environment
+      uses: ./.github/actions/prepare-environment
+      with:
+        python-version: 3.11
+        setup-type: dev
+    - name: Analysing the code with Mypy
+      run: |
+        make check-mypy

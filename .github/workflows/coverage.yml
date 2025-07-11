@@ -1,0 +1,27 @@
+name: Coverage
+on:
+  push:
+    branches: master
+  pull_request:
+    branches: master
+  workflow_dispatch:
+
+
+jobs:
+  coverage:
+    name: Coverage Validation
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Prepare Environment
+      uses: ./.github/actions/prepare-environment
+      with:
+        python-version: 3.11
+        setup-type: test
+    - name: Check code coverage
+      run: |
+        make coverage
+    - name: Report Coveralls
+      if: github.ref == 'refs/heads/master'
+      uses: coverallsapp/github-action@v2
