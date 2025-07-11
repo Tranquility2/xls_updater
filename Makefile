@@ -6,10 +6,13 @@ run:
 	python3 xls_updater/app.py
 
 setup:
-	python3 -m pip install .
+	python3 -m pip install '.[dev, test, release]'
 
 setup-dev:
-	python3 -m pip install --editable '.[dev]'
+	python3 -m pip install '.[dev]'
+
+setup-test:
+	python3 -m pip install '.[test]'
 
 pip-clean:
 	python3 -m pip uninstall -y -r <(pip freeze)
@@ -29,11 +32,11 @@ fix-format:
 	python3 -m black .
 	python3 -m isort .
 
-lint:
+check-lint:
 	python3 -m pylint --reports=True xls_updater
 
 pytest:
-	python3 -m pytest -v
+	python3 -m pytest -v --durations=0
 
 coverage:
 	python3 -m coverage run --source=xls_updater --module pytest \
@@ -41,14 +44,14 @@ coverage:
 
 tests: | pytest coverage
 
-mypy:
+check-mypy:
 	python3 -m mypy -p xls_updater
 
 compile:
 	python3 -m pip install --upgrade pip-tools
-	python3 -m piptools compile -o requirements.txt pyproject.toml
-	python3 -m piptools compile -o requirements-dev.txt --extra dev pyproject.toml
+	python3 -m piptools compile -o requirements/requirements.txt pyproject.toml
+	python3 -m piptools compile -o requirements/requirements-dev.txt --extra dev pyproject.toml
+	python3 -m piptools compile -o requirements/requirements-test.txt --extra test pyproject.toml
 
-build:
-	python3 -m pip install --upgrade build
-	python3 -m build
+patch:
+	python3 -m semvergit -v -t patch -f xls_updater/__about__.py
